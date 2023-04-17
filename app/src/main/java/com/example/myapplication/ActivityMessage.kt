@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.myapplication.utils.tools.helper.ShowDialogMessage
 
-class ActivityMessage :AppCompatActivity (){
+open class ActivityMessage :AppCompatActivity (){
     private var isBackNoticed: Boolean = false
 
     override fun onBackPressed() {

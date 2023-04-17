@@ -2,4 +2,7 @@
     <string name="app_name">My Application</string>
 
     <string name="Select_to_close">Select to close app</string>
+
+    <string name="colibri_logo_image" translatable="false">Colibri Logo</string>
+
 </resources>
