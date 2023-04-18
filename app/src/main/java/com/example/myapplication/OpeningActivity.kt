@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.example.myapplication.databinding.ActivityOpeningBinding
+import com.example.myapplication.view.login.LoginActivity
+import com.example.myapplication.view.order_customer.OrderCustomerActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -54,5 +56,3 @@ class OpeningActivity : ActivityMessage() {
         startActivity(intent)
     }
     }
-
-}

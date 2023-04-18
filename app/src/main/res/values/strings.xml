@@ -2,6 +2,23 @@
     <string name="app_name">My Application</string>
 
     <string name="Select_to_close">Select to close app</string>
+    <string name="Order_is_ready">Order is ready</string>
+
+
+    <string name="email_or_password_not_found">Email or password not found, please try again</string>
+    <string name="enter_email">Masukan email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_confirm_password">Enter confirmation password</string>
+    <string name="enter_store_name">Enter your shop name</string>
+    <string name="login">login</string>
+    <string name="register">Register</string>
+    <string name="registration_form">Registration form</string>
+    <string name="field_can_not_emtpy">Column cannot be empty</string>
+    <string name="fill_with_email_correct_format">Enter the correct email format</string>
+    <string name="password_must_more_8_character">Password must be more than 8 characters</string>
+    <string name="confirm_password_must_match_password">Password confirmation must be the same as the password</string>
+    <string name="finished">Finished</string>
+    <string name="select_variant">Select a variant</string>
 
     <string name="colibri_logo_image" translatable="false">Colibri Logo</string>
 

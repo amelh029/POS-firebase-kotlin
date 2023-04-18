@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.myapplication.databinding.FragmentAlertMessageBinding
 import com.example.myapplication.utils.tools.helper.CustomDialogFragment
 
 class AlertMessageFragment: CustomDialogFragment() {
