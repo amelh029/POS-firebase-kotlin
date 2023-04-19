@@ -1,0 +1,113 @@
+package com.example.myapplication.compose
+
+import androidx.annotation.StringRes
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import com.example.myapplication.view.ui.DropdownItem
+import com.example.myapplication.R
+
+
+fun LazyListScope.basicDropdown(
+    isExpanded: Boolean,
+    @StringRes title: Int,
+    selectedItem: String?,
+    isEnable: Boolean = true,
+    items: List<DropdownItem>,
+    onHeaderClicked: () -> Unit,
+    onSelectedItem: (DropdownItem) -> Unit
+) {
+    item {
+        DropdownHeader(
+            isExpanded = isExpanded,
+            title = stringResource(id = title),
+            selectedItem = selectedItem,
+            isEnable = isEnable,
+            onHeaderClicked = {
+                onHeaderClicked()
+            }
+        )
+    }
+
+    if (isExpanded) {
+        items(items) {
+            DropdownItem(
+                name = it.name,
+                onItemClicked = {
+                    onSelectedItem(it)
+                }
+            )
+        }
+    }
+}
+
+@Composable
+private fun DropdownHeader(
+    isExpanded: Boolean,
+    title: String,
+    selectedItem: String?,
+    isEnable: Boolean,
+    onHeaderClicked: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = MaterialTheme.colors.surface)
+            .run {
+                return@run if (isEnable) {
+                    clickable {
+                        onHeaderClicked()
+                    }
+                } else { this }
+            }
+            .padding(24.dp)
+    ) {
+        Text(
+            modifier = Modifier
+                .weight(1f),
+            text = selectedItem ?: title,
+            style = MaterialTheme.typography.body1.copy(
+                fontWeight = FontWeight.Bold
+            )
+        )
+        if (isEnable) {
+            Icon(
+                painter = painterResource(
+                    id = if (isExpanded) R.drawable.ic_expand_less_24 else R.drawable.ic_expand_more_24
+                ),
+                tint = MaterialTheme.colors.onSurface,
+                contentDescription = null
+            )
+        }
+    }
+}
+
+@Composable
+private fun DropdownItem(
+    name: String,
+    onItemClicked: () -> Unit
+) {
+    Spacer(modifier = Modifier.height(2.dp))
+    Text(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = MaterialTheme.colors.surface)
+            .clickable {
+                onItemClicked()
+            }
+            .padding(16.dp),
+        text = name,
+        style = MaterialTheme.typography.body2
+    )
+}

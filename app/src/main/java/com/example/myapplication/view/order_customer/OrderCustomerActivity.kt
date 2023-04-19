@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.myapplication.ActivityMessage
 import com.example.myapplication.R
+import com.example.myapplication.view.ui.GeneralMenus
 import com.example.myapplication.view.ui.theme.POSTheme
 import com.example.myapplication.view.viewModel.MainViewModel
 import com.example.myapplication.view.viewModel.OrderViewModel

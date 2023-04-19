@@ -19,6 +19,39 @@
     <string name="confirm_password_must_match_password">Password confirmation must be the same as the password</string>
     <string name="finished">Finished</string>
     <string name="select_variant">Select a variant</string>
+    <string name="orders">Order</string>
+    <string name="not_pay_yet">Not yet paid</string>
+    <string name="done">Finished</string>
+    <string name="canceled">Canceled</string>
+
+    <string name="store">Kedai</string>
+    <string name="setting">Pengaturan</string>
+    <string name="new_order">Pesanan baru</string>
+    <string name="sales_recap">Rekap penjualan</string>
+    <string name="products">Data Produk</string>
+    <string name="payment">Pembayaran</string>
+    <string name="promo">Promo</string>
+    <string name="outcome">Pengeluaran</string>
+    <string name="logout">Keluar</string>
+    <string name="stores">Data Kedai</string>
+    <string name="product">Produk</string>
+    <string name="category">Kategori</string>
+    <string name="variant">Varian</string>
+    <string name="theme">Tema</string>
+    <string name="edit_order">Rubah pesanan</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="adding">Tambahkan</string>
+    <string name="dine_in">Makan di tempat</string>
+    <string name="take_away">Di bungkus</string>
+    <string name="customer_name">Nama customer</string>
+    <string name="are_you_sure_edit_this_order_products">Anda yakin akan merubah produk pesanan ini?</string>
+    <string name="order_now">Pesanan sekarang</string>
+    <string name="must_choice">Pilihan wajib</string>
+    <string name="optional_choice">Pilihan optional</string>
+    <string name="out_of_stock">Habis</string>
+    <string name="amount">Banyaknya</string>
+    <string name="variant_must_selected">Varian wajib harus terpilih</string>
 
     <string name="colibri_logo_image" translatable="false">Colibri Logo</string>
 
