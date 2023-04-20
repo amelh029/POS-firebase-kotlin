@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.databinding.RvStringListBinding
 import com.example.myapplication.utils.tools.RecycleViewDiffUtils
 
 class BluetoothDeviceAdapter (
