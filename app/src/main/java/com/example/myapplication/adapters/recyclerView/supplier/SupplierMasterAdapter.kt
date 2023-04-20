@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.data.source.local.entity.room.master.Supplier
+import com.example.myapplication.databinding.RvSupplierMasterBinding
 import com.example.myapplication.view.main.menu.master.bottom.SupplierMasterFragment
 
 class SupplierMasterAdapter(

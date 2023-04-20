@@ -11,7 +11,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.R
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -19,9 +18,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.example.myapplication.R
 import com.example.myapplication.compose.*
 import com.example.myapplication.data.source.local.entity.helper.OrderWithProduct
 import com.example.myapplication.data.source.local.entity.room.helper.OrderData
+import com.example.myapplication.utils.config.thousand
 import com.example.myapplication.utils.tools.helper.ReportsParameter
 import com.example.myapplication.view.ui.GeneralMenus
 import com.example.myapplication.view.ui.ModalContent
@@ -31,6 +32,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -385,7 +387,7 @@ private fun OrderItem(
                     end.linkTo(parent.end)
                     linkTo(top = parent.top, bottom = parent.bottom)
                 },
-            painter = painterResource(id = R.drawable.ic_dimsum_50dp),
+            painter = painterResource(id = R.drawable.ic_coffee),
             tint = MaterialTheme.colors.background,
             contentDescription = null
         )
