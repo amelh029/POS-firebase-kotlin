@@ -1,7 +1,6 @@
 package com.example.myapplication.utils.tools.helper
 
 import androidx.fragment.app.FragmentManager
-import com.example.myapplication.view.AlertMessageFragment
 
 class ShowDialogMessage(private var frm: FragmentManager?) {
 

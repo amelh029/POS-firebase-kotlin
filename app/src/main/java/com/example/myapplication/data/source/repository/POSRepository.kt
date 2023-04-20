@@ -1,26 +1,41 @@
 package com.example.myapplication.data.source.repository
 
 import androidx.lifecycle.LiveData
+import com.example.myapplication.data.NetworkBoundResource
+import com.example.myapplication.data.source.local.entity.helper.OrderWithProduct
+import com.example.myapplication.data.source.local.entity.room.bridge.OrderDetail
+import com.example.myapplication.data.source.local.entity.room.bridge.OrderMixProductVariant
+import com.example.myapplication.data.source.local.entity.room.bridge.OrderProductVariant
+import com.example.myapplication.data.source.local.entity.room.bridge.OrderProductVariantMix
+import com.example.myapplication.data.source.local.entity.room.master.Order
+import com.example.myapplication.data.source.local.entity.room.master.Product
+import com.example.myapplication.data.source.local.entity.room.master.User
+import com.example.myapplication.data.source.local.room.AppDatabase
+import com.example.myapplication.data.source.local.room.POSDao
+import com.example.myapplication.data.source.remote.response.entity.BatchWithData
+import com.example.myapplication.data.source.remote.response.entity.BatchWithObject
+import com.example.myapplication.utils.database.AppExecutors
+import com.example.myapplication.utils.tools.helper.Resource
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class POSRepository private constructor(
     private val appExecutors: AppExecutors,
-    private val soliteDao: SoliteDao
-) : SoliteDataSource {
+    private val POSDao: POSDao
+) : POSDataSource {
 
     companion object {
         @Volatile
-        private var INSTANCE: SoliteRepository? = null
+        private var INSTANCE: POSRepository? = null
 
         fun getInstance(
             appExecutors: AppExecutors,
-            soliteDao: SoliteDao
-        ): SoliteRepository {
+            soliteDao: POSDao
+        ): POSRepository {
             if (INSTANCE == null) {
-                synchronized(SoliteRepository::class.java) {
+                synchronized(POSRepository::class.java) {
                     if (INSTANCE == null) {
-                        INSTANCE = SoliteRepository(appExecutors, soliteDao)
+                        INSTANCE = POSRepository(appExecutors, soliteDao)
                     }
                 }
             }
@@ -38,14 +53,14 @@ class POSRepository private constructor(
     }
 
     override fun updateOrder(order: Order) {
-        soliteDao.updateOrder(order)
+        POSDao.updateOrder(order)
     }
 
     private fun deleteOrderProduct(orderProduct: OrderWithProduct) {
         for (item in orderProduct.products) {
             if (item.product != null) {
 
-                val detail = soliteDao.getDetailOrders(
+                val detail = POSDao.getDetailOrders(
                     orderProduct.order.order.orderNo,
                     item.product!!.id
                 )
@@ -55,21 +70,21 @@ class POSRepository private constructor(
 
                         increaseStock(p.product.id, p.amount)
 
-                        val variantMix = soliteDao.getOrderProductVariantMix(
+                        val variantMix = POSDao.getOrderProductVariantMix(
                             detail.id,
                             p.product.id
                         )
 
                         for (variant in p.variants) {
                             val variantMixOrder =
-                                soliteDao.getOrderMixProductVariant(
+                                POSDao.getOrderMixProductVariant(
                                     variantMix.id,
                                     variant.id
                                 )
-                            soliteDao.deleteOrderMixProductVariant(variantMixOrder)
+                            POSDao.deleteOrderMixProductVariant(variantMixOrder)
                         }
 
-                        soliteDao.deleteOrderProductVariantMix(variantMix)
+                        POSDao.deleteOrderProductVariantMix(variantMix)
                     }
                 } else {
 
@@ -77,12 +92,12 @@ class POSRepository private constructor(
 
                     for (variant in item.variants) {
                         val orderVariant =
-                            soliteDao.getVariantOrder(detail.id, variant.id)
-                        soliteDao.deleteOrderVariant(orderVariant)
+                            POSDao.getVariantOrder(detail.id, variant.id)
+                        POSDao.deleteOrderVariant(orderVariant)
                     }
                 }
 
-                soliteDao.deleteOrderDetail(detail)
+                POSDao.deleteOrderDetail(detail)
             }
         }
     }
@@ -92,32 +107,32 @@ class POSRepository private constructor(
             if (item.product != null) {
 
                 val detail = OrderDetail(order.order.order.orderNo, item.product!!.id, item.amount)
-                detail.id = soliteDao.insertDetailOrder(detail)
+                detail.id = POSDao.insertDetailOrder(detail)
 
                 if (item.product!!.isMix) {
                     for (p in item.mixProducts) {
 
-                        soliteDao.decreaseAndGetProduct(p.product.id, p.amount)
+                        POSDao.decreaseAndGetProduct(p.product.id, p.amount)
 
                         val variantMix = OrderProductVariantMix(detail.id, p.product.id, p.amount)
-                        variantMix.id = soliteDao.insertVariantMixOrder(variantMix)
+                        variantMix.id = POSDao.insertVariantMixOrder(variantMix)
 
                         for (variant in p.variants) {
                             val mixVariant = OrderMixProductVariant(variantMix.id, variant.id)
                             mixVariant.id =
-                                soliteDao.insertMixVariantOrder(mixVariant)
+                                POSDao.insertMixVariantOrder(mixVariant)
                         }
                     }
                 } else {
 
-                    soliteDao.decreaseAndGetProduct(
+                    POSDao.decreaseAndGetProduct(
                         item.product!!.id,
                         (item.amount * item.product!!.portion)
                     )
 
                     for (variant in item.variants) {
                         val orderVariant = OrderProductVariant(detail.id, variant.id)
-                        soliteDao.insertVariantOrder(orderVariant)
+                        POSDao.insertVariantOrder(orderVariant)
                     }
                 }
             }
@@ -126,7 +141,7 @@ class POSRepository private constructor(
 
     private fun increaseStock(idProduct: Long, amount: Int)
             : BatchWithObject<Product> {
-        val product = soliteDao.increaseAndGetProduct(idProduct, amount)
+        val product = POSDao.increaseAndGetProduct(idProduct, amount)
         val doc = Firebase.firestore
             .collection(AppDatabase.DB_NAME)
             .document(AppDatabase.MAIN)
@@ -138,7 +153,7 @@ class POSRepository private constructor(
     override fun getUsers(userId: String): LiveData<Resource<User?>> {
         return object : NetworkBoundResource<User?, List<User>>(appExecutors) {
             override fun loadFromDB(): LiveData<User?> {
-                return soliteDao.getUser(userId)
+                return POSDao.getUser(userId)
             }
 
         }.asLiveData()

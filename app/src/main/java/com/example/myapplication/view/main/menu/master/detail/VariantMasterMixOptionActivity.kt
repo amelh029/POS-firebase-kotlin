@@ -1,10 +1,17 @@
 package com.example.myapplication.view.main.menu.master.detail
 
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.ActivityMessage
+import com.example.myapplication.adapters.viewPager.ViewPagerAdapter
+import com.example.myapplication.data.source.local.entity.room.master.Category
+import com.example.myapplication.data.source.local.entity.room.master.Product
+import com.example.myapplication.data.source.local.entity.room.master.Variant
 import com.example.myapplication.databinding.ActivityMasterVariantMixOptionBinding
+import com.example.myapplication.utils.tools.helper.FragmentWithTitle
 import com.example.myapplication.view.viewModel.ProductViewModel
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.launch
 
 class VariantMasterMixOptionActivity : ActivityMessage() {
 

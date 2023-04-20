@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.myapplication.adapters.recyclerView.product.ProductMixVariantAdapter
+import com.example.myapplication.data.source.local.entity.room.master.Category
+import com.example.myapplication.data.source.local.entity.room.master.Variant
 import com.example.myapplication.view.viewModel.ProductViewModel
 import kotlinx.coroutines.launch
 

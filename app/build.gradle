@@ -89,6 +89,9 @@ dependencies {
     implementation "androidx.room:room-ktx:2.5.1"
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'com.google.android.gms:play-services-analytics-impl:18.0.1'
     kapt "org.xerial:sqlite-jdbc:3.41.2.1"
     kapt "androidx.room:room-compiler:2.6.0-alpha01"
 

@@ -18,6 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.myapplication.R
+import com.example.myapplication.data.source.local.entity.room.master.Product
+import com.example.myapplication.utils.config.toIDR
 import com.example.myapplication.view.viewModel.ProductViewModel
 
 
