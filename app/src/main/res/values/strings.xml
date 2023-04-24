@@ -85,7 +85,48 @@
     <string name="outcome_title">Judul pengeluaran</string>
     <string name="deskripsi_optional">Deskripsi (Optional)</string>
     <string name="total_outcome">Jumlah pengeluaran</string>
+    <string name="categories">Data kategori</string>
+    <string name="category_name">Nama kategori</string>
+    <string name="payments">Data pembayaran</string>
+    <string name="cash_payment">Pembayaran tunai</string>
+    <string name="payment_name">Nama pembayaran</string>
+    <string name="cash">Tunai</string>
+    <string name="non_cash">Non-tunai</string>
     <string name="save">Simpan</string>
+    <string name="select_category">Pilih kategori</string>
+    <string name="product_detail">Rincian produk</string>
+    <string name="name">Nama</string>
+    <string name="sell_price">Harga jual</string>
+    <string name="description">Deskripsi</string>
+    <string name="can_not_be_empty">Tidak boleh kosong</string>
+    <string name="promo_cash">Promo tunai</string>
+    <string name="promo_percentage">Promo persentase</string>
+    <string name="manual_input">Input manual</string>
+    <string name="percentage_1_100">Persentase (1 – 100)</string>
+    <string name="promos">Data promo</string>
+    <string name="promo_name">Nama promo</string>
+    <string name="define_cash_value">Tentukan nilai tunai</string>
+    <string name="total_cash_promo">Jumlah promo tunai</string>
+    <string name="undone_orders">Pesanan belum selesai</string>
+    <string name="not_pay_yet_orders">Pesanan belum melakukan pembayaran</string>
+    <string name="canceled_orders">Pesanan dibatalkan</string>
+    <string name="payed_orders">Pesanan sudah bayar</string>
+    <string name="select_store">Pilih kedai</string>
+    <string name="cash_sales">Penjualan tunai</string>
+    <string name="non_cash_sales">Penjualan non tunai</string>
+    <string name="gross_sales">Penjualan bersih</string>
+    <string name="total_sales">Total penjualan</string>
+    <string name="are_you_sure_select_this_store_for_next_orders">Anda yakin akan memilih kedai ini untuk pesanan selanjutnya?</string>
+    <string name="store_name">Nama kedai</string>
+    <string name="address">Alamat</string>
+    <string name="variants">Data varian</string>
+    <string name="variant_name">Nama varian</string>
+    <string name="single_option">Hanya pilih satu</string>
+    <string name="multiple_option">Dapat pilih banyak</string>
+    <string name="add_new_option">Tambah pilihan baru</string>
+    <string name="option_selected">%s varian terpilih</string>
+    <string name="option_name">Nama pilihan</string>
+
 
     <string name="colibri_logo_image" translatable="false">Colibri Logo</string>
 

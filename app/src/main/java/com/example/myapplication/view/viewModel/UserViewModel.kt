@@ -3,6 +3,7 @@ package com.example.myapplication.view.viewModel
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.example.myapplication.data.source.local.entity.room.master.User
 import com.example.myapplication.data.source.repository.POSRepository
 import com.example.myapplication.utils.tools.helper.Resource
 

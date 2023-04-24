@@ -5,6 +5,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery
+import com.example.myapplication.data.source.domain.GetProductVariantOptions
+import com.example.myapplication.data.source.local.entity.room.bridge.VariantMix
+import com.example.myapplication.data.source.local.entity.room.bridge.VariantProduct
+import com.example.myapplication.data.source.local.entity.room.master.Category
+import com.example.myapplication.data.source.local.entity.room.master.Product
+import com.example.myapplication.data.source.local.entity.room.master.Variant
+import com.example.myapplication.data.source.local.entity.room.master.VariantOption
+import com.example.myapplication.data.source.repository.*
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class ProductViewModel (

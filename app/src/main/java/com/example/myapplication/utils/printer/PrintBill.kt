@@ -6,8 +6,10 @@ import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.example.myapplication.data.source.local.entity.helper.OrderWithProduct
 import com.example.myapplication.data.source.local.entity.room.master.Store
+import com.example.myapplication.data.source.preference.SettingPref
 import com.example.myapplication.utils.config.RupiahUtils.Companion.thousand
 import com.example.myapplication.utils.config.RupiahUtils.Companion.toRupiah
+import com.example.myapplication.view.bluetooth.BluetoothDeviceListActivity
 import java.io.IOException
 import java.io.OutputStream
 import java.text.SimpleDateFormat

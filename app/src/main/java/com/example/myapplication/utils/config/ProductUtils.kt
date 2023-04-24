@@ -1,5 +1,6 @@
 package com.example.myapplication.utils.config
 
+import com.example.myapplication.data.source.local.entity.helper.ProductOrderDetail
 import java.util.ArrayList
 
 class ProductUtils {

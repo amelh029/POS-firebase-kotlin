@@ -1,5 +1,6 @@
 package com.example.myapplication.compose
 
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -19,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.myapplication.R
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -27,6 +27,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import com.example.myapplication.R
+import com.example.myapplication.data.source.local.entity.helper.ProductOrderDetail
 import com.example.myapplication.utils.config.DateUtils
 import com.example.myapplication.utils.config.thousand
 import com.example.myapplication.utils.config.timeMilliSecondToDateFormat
@@ -40,20 +42,20 @@ fun BucketView(
     onClickOrder: () -> Unit,
     onClearBucket: () -> Unit
 ) {
-
     val currentBucket = orderViewModel.currentBucket.collectAsState()
 
     LazyColumn(
         modifier = Modifier
             .padding(16.dp)
-    ) {
+    ){
         item {
-            val time = currentBucket.value.time?.timeMilliSecondToDateFormat(DateUtils.DATE_WITH_DAY_AND_TIME_FORMAT)?.run {
-                Pair(
-                    first = this.substring(0..19),
-                    second = this.substring(21 until this.length),
-                )
-            }
+            val time =
+                currentBucket.value.time?.timeMilliSecondToDateFormat(DateUtils.DATE_WITH_DAY_AND_TIME_FORMAT)?.run {
+                    Pair(
+                        first = this.substring(0..19),
+                        second = this.substring(21 until this.length),
+                    )
+                }
             Text(
                 text = time?.first ?: "",
                 style = MaterialTheme.typography.body1.copy(
@@ -66,40 +68,42 @@ fun BucketView(
             )
             Spacer(modifier = Modifier.height(24.dp))
         }
-
-        currentBucket.value.products?.let {
-            items(it) { detail ->
-                BucketItem(
-                    detail = detail,
-                    onRemoveItem = {
-                        if (it.size == 1) {
-                            onClearBucket()
+            currentBucket.value.products?.let {
+                items(it) { detail ->
+                    BucketItem(
+                        detail = detail,
+                        onRemoveItem = {
+                            if (it.size == 1) {
+                                onClearBucket()
+                            }
+                            orderViewModel.removeProductFromBucket(detail)
                         }
-                        orderViewModel.removeProductFromBucket(detail)
-                    }
-                )
+                    )
+                }
             }
+
+            item {
+                TotalBucket(
+                    total = currentBucket.value.getTotal().thousand()
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+                PrimaryButtonView(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(
+                            color = MaterialTheme.colors.primary,
+                            shape = RoundedCornerShape(8.dp)
+                        ),
+                    buttonText = stringResource(
+                        id = if (isEditOrder) R.string.edit_order else R.string.order_now
+                    ),
+                    onClick = onClickOrder
+                )
         }
 
-        item {
-            TotalBucket(
-                total = currentBucket.value.getTotal().thousand()
-            )
-            Spacer(modifier = Modifier.height(24.dp))
-            PrimaryButtonView(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        color = MaterialTheme.colors.primary,
-                        shape = RoundedCornerShape(8.dp)
-                    ),
-                buttonText = stringResource(
-                    id = if (isEditOrder) R.string.edit_order else R.string.order_now
-                ),
-                onClick = onClickOrder
-            )
-        }
     }
+
+
 }
 
 @Composable
@@ -213,3 +217,5 @@ private fun TotalBucket(
         }
     }
 }
+
+

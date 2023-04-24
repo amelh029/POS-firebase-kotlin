@@ -33,7 +33,7 @@ class NotificationUtils {
                     CHANNEL_ID,
                     CHANNEL_NAME,
                     title ?: "",
-                    "Pesanan udah siap, yuk angkat sekarang",
+                    "Order is ready, to pick up now",
                     NOTIFICATION_ID,
                     Intent(context, OpeningActivity::class.java),
                     context
