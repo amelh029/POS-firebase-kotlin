@@ -37,6 +37,7 @@ import com.example.myapplication.view.ui.ThousandAndSuggestionVisualTransformati
 import com.example.myapplication.view.viewModel.MainViewModel
 import com.example.myapplication.view.viewModel.OrderViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 
 
 @Composable

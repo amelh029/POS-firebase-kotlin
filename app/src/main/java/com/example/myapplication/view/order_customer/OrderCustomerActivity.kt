@@ -20,6 +20,9 @@ import androidx.navigation.navArgument
 import com.example.myapplication.ActivityMessage
 import com.example.myapplication.R
 import com.example.myapplication.data.source.local.entity.helper.ProductOrderDetail
+import com.example.myapplication.view.orders.OrdersActivity
+import com.example.myapplication.view.settings.SettingsActivity
+import com.example.myapplication.view.store.StoreActivity
 import com.example.myapplication.view.ui.GeneralMenus
 import com.example.myapplication.view.ui.theme.POSTheme
 import com.example.myapplication.view.viewModel.MainViewModel

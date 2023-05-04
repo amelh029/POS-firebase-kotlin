@@ -14,6 +14,7 @@ import com.example.myapplication.data.source.local.entity.room.bridge.VariantMix
 import com.example.myapplication.data.source.local.entity.room.helper.ProductWithCategory
 import com.example.myapplication.data.source.local.entity.room.master.Product
 import com.example.myapplication.data.source.local.entity.room.master.Variant
+import com.example.myapplication.databinding.RvProductBinding
 import com.example.myapplication.utils.tools.RecycleViewDiffUtils
 import com.example.myapplication.view.viewModel.ProductViewModel
 import kotlinx.coroutines.launch

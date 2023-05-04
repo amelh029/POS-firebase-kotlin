@@ -30,6 +30,7 @@ import com.example.myapplication.data.source.local.entity.room.helper.ProductWit
 import com.example.myapplication.data.source.local.entity.room.master.Category
 import com.example.myapplication.data.source.local.entity.room.master.Product
 import com.example.myapplication.utils.config.DateUtils
+import com.example.myapplication.utils.config.toIDR
 import com.example.myapplication.view.ui.GeneralMenus
 import com.example.myapplication.view.ui.ModalContent
 import com.example.myapplication.view.viewModel.OrderViewModel

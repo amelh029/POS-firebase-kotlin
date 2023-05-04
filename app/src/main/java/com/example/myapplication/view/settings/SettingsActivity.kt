@@ -9,6 +9,7 @@ import com.example.myapplication.ActivityMessage
 import com.example.myapplication.utils.config.DateUtils
 import com.example.myapplication.view.order_customer.OrderCustomerActivity
 import com.example.myapplication.view.orders.OrdersActivity
+import com.example.myapplication.view.store.StoreActivity
 import com.example.myapplication.view.ui.GeneralMenus
 import com.example.myapplication.view.ui.theme.POSTheme
 import com.example.myapplication.view.viewModel.MainViewModel

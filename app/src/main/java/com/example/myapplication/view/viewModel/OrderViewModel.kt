@@ -1,5 +1,6 @@
 package com.example.myapplication.view.viewModel
 
+
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,7 +28,7 @@ class OrderViewModel (
     private val getRecapData: GetRecapData,
     private val payOrder: PayOrder,
     private val getOrdersGeneralMenuBadge: GetOrdersGeneralMenuBadge,
-    private val updateOrderProducts: UpdateOrderProducts
+    private val updateOrderProducts: UpdateOrderProducts,
 ) : ViewModel() {
 
     companion object : ViewModelFromFactory<OrderViewModel>() {

@@ -19,7 +19,7 @@ class OpeningActivity : ActivityMessage() {
         super.onCreate(savedInstanceState)
         val binding = ActivityOpeningBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        auth = Firebase.auth
+//        auth = Firebase.auth
 
         try {
             binding.tvOpeningVersion.text.apply {
@@ -29,7 +29,7 @@ class OpeningActivity : ActivityMessage() {
             e.printStackTrace()
         }
 
-        Handler(Looper.getMainLooper()).postDelayed({checkUser()}, 2000)
+      //  Handler(Looper.getMainLooper()).postDelayed({checkUser()}, 2000)
 
     }
 

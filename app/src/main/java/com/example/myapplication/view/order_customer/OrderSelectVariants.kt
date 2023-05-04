@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -25,6 +26,7 @@ import com.example.myapplication.data.source.local.entity.helper.VariantWithOpti
 import com.example.myapplication.data.source.local.entity.room.master.VariantOption
 import com.example.myapplication.utils.config.thousand
 import com.example.myapplication.view.viewModel.ProductViewModel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 

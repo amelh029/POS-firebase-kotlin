@@ -5,7 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.example.myapplication.data.source.domain.NewOutcome
-import com.example.myapplication.data.source.local.entity.room.master.*
+import com.example.myapplication.data.source.local.entity.room.master.Customer
+import com.example.myapplication.data.source.local.entity.room.master.Outcome
+import com.example.myapplication.data.source.local.entity.room.master.Payment
+import com.example.myapplication.data.source.local.entity.room.master.Promo
+import com.example.myapplication.data.source.local.entity.room.master.Store
+import com.example.myapplication.data.source.local.entity.room.master.Supplier
 import com.example.myapplication.data.source.repository.*
 import com.example.myapplication.utils.config.CashAmounts
 import com.example.myapplication.utils.tools.helper.ReportsParameter
@@ -56,8 +61,8 @@ class MainViewModel (
     fun filterCustomer(keyword: String) = when {
         keyword.isNotEmpty() -> {
             customers
-                .map {
-                    it.filter { customer ->
+                .map{
+                    it.filter { customer->
                         customer.name.contains(keyword, ignoreCase = true)
                     }
                 }

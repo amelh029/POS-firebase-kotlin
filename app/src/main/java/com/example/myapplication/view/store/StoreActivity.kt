@@ -15,18 +15,36 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.myapplication.ActivityMessage
-import com.example.myapplication.OpeningActivity
-import com.example.myapplication.R
-import com.example.myapplication.data.source.local.entity.helper.VariantView
-import com.example.myapplication.view.order_customer.OrderCustomerActivity
-import com.example.myapplication.view.orders.OrdersActivity
-import com.example.myapplication.view.settings.SettingsActivity
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
+
+import com.example.myapplication.ActivityMessage
+import com.example.myapplication.OpeningActivity
+import com.example.myapplication.R
+import com.example.myapplication.view.store.variants.VariantView
+import com.example.myapplication.utils.config.DateUtils
+import com.example.myapplication.view.order_customer.OrderCustomerActivity
+import com.example.myapplication.view.orders.OrdersActivity
+import com.example.myapplication.view.outcomes.OutcomesActivity
+import com.example.myapplication.view.settings.SettingsActivity
+import com.example.myapplication.view.store.category.CategoryMasterView
+import com.example.myapplication.view.store.payments.PaymentMasterView
+import com.example.myapplication.view.store.product.ProductDetailMaster
+import com.example.myapplication.view.store.product.ProductsMaster
+import com.example.myapplication.view.store.promo.PromoMasterView
+import com.example.myapplication.view.store.recap.RecapMainView
+import com.example.myapplication.view.store.stores.StoresView
+import com.example.myapplication.view.ui.GeneralMenus
+import com.example.myapplication.view.ui.MasterMenus
+import com.example.myapplication.view.ui.theme.POSTheme
+import com.example.myapplication.view.viewModel.MainViewModel
+import com.example.myapplication.view.viewModel.OrderViewModel
+import com.example.myapplication.view.viewModel.ProductViewModel
+import com.google.accompanist.pager.ExperimentalPagerApi
+
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 
 class StoreActivity : ActivityMessage() {
 
@@ -47,7 +65,7 @@ class StoreActivity : ActivityMessage() {
         val date = DateUtils.currentDate
 
         setContent {
-            SolitePOSTheme {
+            POSTheme {
 
                 val navController = rememberNavController()
 
@@ -86,24 +104,24 @@ class StoreActivity : ActivityMessage() {
                             },
                             onStoreMenuClicked = {
                                 when (it) {
-                                    StoreMenus.SALES_RECAP -> {
+                                    com.example.myapplication.view.ui.StoreMenus.SALES_RECAP -> {
                                         navController.navigate(StoreDestinations.MASTER_RECAP)
                                     }
-                                    StoreMenus.OUTCOMES -> {
+                                    com.example.myapplication.view.ui.StoreMenus.OUTCOMES -> {
                                         OutcomesActivity.createInstanceForRecap(this@StoreActivity)
                                     }
 
-                                    StoreMenus.PAYMENT -> {
+                                    com.example.myapplication.view.ui.StoreMenus.PAYMENT -> {
                                         navController.navigate(StoreDestinations.MASTER_PAYMENT)
                                     }
 
-                                    StoreMenus.STORE -> {
+                                    com.example.myapplication.view.ui.StoreMenus.STORE -> {
                                         navController.navigate(StoreDestinations.MASTER_STORES)
                                     }
-                                    StoreMenus.PROMO -> {
+                                    com.example.myapplication.view.ui.StoreMenus.PROMO -> {
                                         navController.navigate(StoreDestinations.MASTER_PROMO)
                                     }
-                                    StoreMenus.LOGOUT -> { logout() }
+                                    com.example.myapplication.view.ui.StoreMenus.LOGOUT -> { logout() }
                                     else -> {
                                         // Do nothing
                                     }

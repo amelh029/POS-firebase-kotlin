@@ -34,10 +34,10 @@ import com.example.myapplication.data.source.local.entity.room.master.*
         Store::class,
         Promo::class,
         OrderPromo::class],
-    version = 6,
-    autoMigrations = [
-        AutoMigration(from = 5, to = 6),
-    ]
+    version =   1,
+    /*autoMigrations = [
+        AutoMigration(from = 1, to = 1),
+    ]*/
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun posDao(): POSDao

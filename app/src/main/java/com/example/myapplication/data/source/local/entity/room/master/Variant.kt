@@ -5,8 +5,7 @@ import com.example.myapplication.data.source.local.room.AppDatabase.Companion.UP
 import com.example.myapplication.data.source.remote.response.helper.RemoteClassUtils
 import com.google.firebase.firestore.QuerySnapshot
 import java.io.Serializable
-import java.util.ArrayList
-import java.util.HashMap
+import java.util.*
 
 
 @Entity(

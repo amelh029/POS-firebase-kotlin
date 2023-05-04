@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
+        android:name=".POSApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -45,6 +46,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.settings.SettingsActivity"/>
+        <activity android:name=".view.main.menu.master.detail.VariantMasterMixOptionActivity"/>
         <receiver android:name=".utils.tools.DoneCookService" />
 
         <meta-data

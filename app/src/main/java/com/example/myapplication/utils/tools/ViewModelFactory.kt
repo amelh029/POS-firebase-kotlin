@@ -3,13 +3,38 @@ package com.example.myapplication.utils.tools
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.data.source.domain.*
+import com.example.myapplication.data.source.repository.*
+import com.example.myapplication.injection.DomainInjection.provideGetIncomesRecapData
+import com.example.myapplication.injection.DomainInjection.provideGetOrdersGeneralMenuBadge
+import com.example.myapplication.injection.DomainInjection.provideGetProductOrder
+import com.example.myapplication.injection.DomainInjection.provideGetProductVariantOptions
+import com.example.myapplication.injection.DomainInjection.provideNewOrder
+import com.example.myapplication.injection.DomainInjection.provideNewOutcome
+import com.example.myapplication.injection.DomainInjection.providePayOrder
+import com.example.myapplication.injection.DomainInjection.provideUpdateOrderProducts
+import com.example.myapplication.injection.RepositoryInjection.provideCategoriesRepository
+import com.example.myapplication.injection.RepositoryInjection.provideCustomersRepository
+import com.example.myapplication.injection.RepositoryInjection.provideOrdersRepository
+import com.example.myapplication.injection.RepositoryInjection.provideOutcomesRepository
+import com.example.myapplication.injection.RepositoryInjection.providePOSRepository
+import com.example.myapplication.injection.RepositoryInjection.providePaymentsRepository
+import com.example.myapplication.injection.RepositoryInjection.provideProductVariantsRepository
+import com.example.myapplication.injection.RepositoryInjection.provideProductsRepository
+import com.example.myapplication.injection.RepositoryInjection.providePromosRepository
+import com.example.myapplication.injection.RepositoryInjection.provideSettingRepository
+import com.example.myapplication.injection.RepositoryInjection.provideStoreRepository
+import com.example.myapplication.injection.RepositoryInjection.provideSupplierRepository
+import com.example.myapplication.injection.RepositoryInjection.provideVariantMixesRepository
+import com.example.myapplication.injection.RepositoryInjection.provideVariantOptionsRepository
+import com.example.myapplication.injection.RepositoryInjection.provideVariantsRepository
 import com.example.myapplication.view.viewModel.MainViewModel
 import com.example.myapplication.view.viewModel.OrderViewModel
 import com.example.myapplication.view.viewModel.ProductViewModel
 import com.example.myapplication.view.viewModel.UserViewModel
 
 class ViewModelFactory private constructor(
-    private val repository: SoliteRepository,
+    private val repository: POSRepository,
     private val paymentsRepository: PaymentsRepository,
     private val supplierRepository: SuppliersRepository,
     private val customersRepository: CustomersRepository,
@@ -42,7 +67,7 @@ class ViewModelFactory private constructor(
                 synchronized(ViewModelFactory::class.java) {
                     if (INSTANCE == null) {
                         INSTANCE = ViewModelFactory(
-                            repository = provideSoliteRepository(context),
+                            repository = providePOSRepository(context),
                             paymentsRepository = providePaymentsRepository(context),
                             supplierRepository = provideSupplierRepository(context),
                             customersRepository = provideCustomersRepository(context),

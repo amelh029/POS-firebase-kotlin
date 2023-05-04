@@ -1,5 +1,7 @@
 package com.example.myapplication.data.source.repository
 
+import com.example.myapplication.data.source.local.entity.room.master.Outcome
+import com.example.myapplication.utils.tools.helper.ReportsParameter
 import kotlinx.coroutines.flow.Flow
 
 interface OutcomesRepository {
