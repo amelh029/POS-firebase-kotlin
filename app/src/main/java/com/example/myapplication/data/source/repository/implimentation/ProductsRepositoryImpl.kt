@@ -11,7 +11,6 @@ class ProductsRepositoryImpl (
     companion object {
         @Volatile
         private var INSTANCE: ProductsRepositoryImpl? = null
-
         fun getInstance(
             dao: ProductsDao
         ): ProductsRepositoryImpl {

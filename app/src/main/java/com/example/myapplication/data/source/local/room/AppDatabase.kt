@@ -33,10 +33,12 @@ import com.example.myapplication.data.source.local.entity.room.master.*
         VariantOption::class,
         Store::class,
         Promo::class,
-        OrderPromo::class],
-    version =   1,
+        OrderPromo::class,
+        Reserves::class
+               ],
+    version = 1,
     /*autoMigrations = [
-        AutoMigration(from = 1, to = 1),
+        AutoMigration(from = 1, to = 2),
     ]*/
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -55,6 +57,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun variantMixesDao(): VariantMixesDao
     abstract fun storeDao(): StoreDao
     abstract fun promoDao(): PromosDao
+    abstract fun reservesDao(): ReserveDao
 
     companion object {
 

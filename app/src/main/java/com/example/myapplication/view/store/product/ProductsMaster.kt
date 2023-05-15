@@ -102,9 +102,7 @@ private fun ProductHeader(
     categories: List<Category>,
     onBackClicked: () -> Unit
 ) {
-
     val scope = rememberCoroutineScope()
-
     Surface(
         modifier = Modifier
             .fillMaxWidth()

@@ -12,10 +12,12 @@ object StoreDestinations {
     const val MASTER_CATEGORY = "master_category"
     const val MASTER_PAYMENT = "master_payment"
     const val MASTER_PROMO = "master_promo"
+    const val MASTER_RESERVES = "master_reserves"
 
     const val DETAIL_PRODUCT = "detail_product/{$PRODUCT_ID}"
     const val PRODUCT_VARIANTS = "product_variants/{$PRODUCT_ID}"
     fun productDetail(productId: Long) = "detail_product/$productId"
     fun newProduct() = "detail_product/0"
+    fun newReserves() = "detail_reserves/0"
     fun productVariants(productId: Long) = "product_variants/$productId"
 }

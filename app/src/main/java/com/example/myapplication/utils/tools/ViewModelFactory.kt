@@ -22,6 +22,7 @@ import com.example.myapplication.injection.RepositoryInjection.providePaymentsRe
 import com.example.myapplication.injection.RepositoryInjection.provideProductVariantsRepository
 import com.example.myapplication.injection.RepositoryInjection.provideProductsRepository
 import com.example.myapplication.injection.RepositoryInjection.providePromosRepository
+import com.example.myapplication.injection.RepositoryInjection.provideReservesRepository
 import com.example.myapplication.injection.RepositoryInjection.provideSettingRepository
 import com.example.myapplication.injection.RepositoryInjection.provideStoreRepository
 import com.example.myapplication.injection.RepositoryInjection.provideSupplierRepository
@@ -31,6 +32,7 @@ import com.example.myapplication.injection.RepositoryInjection.provideVariantsRe
 import com.example.myapplication.view.viewModel.MainViewModel
 import com.example.myapplication.view.viewModel.OrderViewModel
 import com.example.myapplication.view.viewModel.ProductViewModel
+import com.example.myapplication.view.viewModel.ReservesViewModel
 import com.example.myapplication.view.viewModel.UserViewModel
 
 class ViewModelFactory private constructor(
@@ -57,6 +59,7 @@ class ViewModelFactory private constructor(
     private val newOutcome: NewOutcome,
     private val updateOrderProducts: UpdateOrderProducts,
     private val promosRepository: PromosRepository,
+    private val reservesRepository: ReservesRepository
 ) : ViewModelProvider.NewInstanceFactory() {
     companion object {
         @Volatile
@@ -89,7 +92,9 @@ class ViewModelFactory private constructor(
                             settingRepository = provideSettingRepository(context),
                             newOutcome = provideNewOutcome(context),
                             updateOrderProducts = provideUpdateOrderProducts(context),
-                            promosRepository = providePromosRepository(context)
+                            promosRepository = providePromosRepository(context),
+                            reservesRepository = provideReservesRepository(context)
+
                         )
                     }
                 }
@@ -110,7 +115,8 @@ class ViewModelFactory private constructor(
                     storeRepository = storeRepository,
                     settingRepository = settingRepository,
                     newOutcome = newOutcome,
-                    promosRepository = promosRepository
+                    promosRepository = promosRepository,
+                    reservesRepository = reservesRepository
                 ) as T
             }
 
@@ -139,6 +145,11 @@ class ViewModelFactory private constructor(
                     productVariantsRepository = productVariantsRepository,
                     getProductVariantOptions = getProductVariantOptions,
                     variantMixesRepository = variantMixesRepository
+                ) as T
+            }
+            modelClass.isAssignableFrom(ReservesViewModel::class.java)->{
+                ReservesViewModel(
+                    reservesRepository = reservesRepository
                 ) as T
             }
 

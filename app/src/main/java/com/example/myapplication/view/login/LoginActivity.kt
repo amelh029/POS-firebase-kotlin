@@ -77,6 +77,7 @@ class LoginActivity : AppCompatActivity() {
                                 onRegister = { email, password, store ->
                                     auth.createUserWithEmailAndPassword(email, password)
                                         .addOnCompleteListener {
+                                            toMain()
 
                                         }
                                 }

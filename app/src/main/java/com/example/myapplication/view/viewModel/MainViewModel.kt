@@ -26,7 +26,8 @@ class MainViewModel (
     private val storeRepository: StoreRepository,
     private val settingRepository: SettingRepository,
     private val promosRepository: PromosRepository,
-    private val newOutcome: NewOutcome
+    private val newOutcome: NewOutcome,
+    private val reservesRepository: ReservesRepository
 ) : ViewModel() {
 
     companion object : ViewModelFromFactory<MainViewModel>() {

@@ -28,6 +28,7 @@ import com.example.myapplication.view.ui.theme.POSTheme
 import com.example.myapplication.view.viewModel.MainViewModel
 import com.example.myapplication.view.viewModel.OrderViewModel
 import com.example.myapplication.view.viewModel.ProductViewModel
+import com.example.myapplication.view.viewModel.ReservesViewModel
 import com.google.accompanist.insets.ProvideWindowInsets
 import kotlinx.coroutines.launch
 
@@ -36,6 +37,7 @@ class OrderCustomerActivity : ActivityMessage() {
     private lateinit var productViewModel: ProductViewModel
     private lateinit var mainViewModel: MainViewModel
     private lateinit var orderViewModel: OrderViewModel
+    private lateinit var reserveViewModel: ReservesViewModel
 
     @ExperimentalMaterialApi
     @ExperimentalAnimationApi
@@ -48,6 +50,7 @@ class OrderCustomerActivity : ActivityMessage() {
         productViewModel = ProductViewModel.getMainViewModel(this)
         mainViewModel = MainViewModel.getMainViewModel(this)
         orderViewModel = OrderViewModel.getOrderViewModel(this)
+        reserveViewModel = ReservesViewModel.getMainViewModel(this)
 
         setContent{
             POSTheme {

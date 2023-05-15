@@ -10,6 +10,7 @@ import com.example.myapplication.data.source.local.entity.room.bridge.VariantMix
 import com.example.myapplication.data.source.local.entity.room.bridge.VariantProduct
 import com.example.myapplication.data.source.local.entity.room.master.Category
 import com.example.myapplication.data.source.local.entity.room.master.Product
+import com.example.myapplication.data.source.local.entity.room.master.Reserves
 import com.example.myapplication.data.source.local.entity.room.master.Variant
 import com.example.myapplication.data.source.local.entity.room.master.VariantOption
 import com.example.myapplication.data.source.repository.*
@@ -23,7 +24,7 @@ class ProductViewModel (
     private val productsRepository: ProductsRepository,
     private val productVariantsRepository: ProductVariantsRepository,
     private val getProductVariantOptions: GetProductVariantOptions,
-    private val variantMixesRepository: VariantMixesRepository,
+    private val variantMixesRepository: VariantMixesRepository
 ) : ViewModel() {
 
     companion object : ViewModelFromFactory<ProductViewModel>() {
@@ -110,6 +111,7 @@ class ProductViewModel (
 
     fun getCategories(query: SimpleSQLiteQuery) = categoriesRepository.getCategories(query)
 
+
     fun insertCategory(data: Category) {
         viewModelScope.launch {
             categoriesRepository.insertCategory(data)
@@ -121,6 +123,8 @@ class ProductViewModel (
             categoriesRepository.updateCategory(data)
         }
     }
+
+
 
     val variants = variantsRepository.getVariants()
 

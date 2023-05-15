@@ -32,6 +32,7 @@ data class Product(
     @ColumnInfo(name = Category.ID)
     var category: Long,
 
+
     @ColumnInfo(name = IMAGE)
     var image: String,
 

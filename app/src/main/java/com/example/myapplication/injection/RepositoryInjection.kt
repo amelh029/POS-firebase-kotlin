@@ -89,4 +89,8 @@ object RepositoryInjection {
         val database = getInstance(context)
         return PromosRepositoryImpl.getInstance(dao = database.promoDao())
     }
+    fun provideReservesRepository(context: Context): ReservesRepository{
+        val database = getInstance(context)
+        return ReserveRepositoryImpl.getInstance(dao = database.reservesDao())
+    }
 }

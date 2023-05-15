@@ -28,6 +28,7 @@ import com.example.myapplication.view.order_customer.OrderCustomerActivity
 import com.example.myapplication.view.orders.OrdersActivity
 import com.example.myapplication.view.outcomes.OutcomesActivity
 import com.example.myapplication.view.settings.SettingsActivity
+import com.example.myapplication.view.store.Reserves.ReservesMaster
 import com.example.myapplication.view.store.category.CategoryMasterView
 import com.example.myapplication.view.store.payments.PaymentMasterView
 import com.example.myapplication.view.store.product.ProductDetailMaster
@@ -41,6 +42,7 @@ import com.example.myapplication.view.ui.theme.POSTheme
 import com.example.myapplication.view.viewModel.MainViewModel
 import com.example.myapplication.view.viewModel.OrderViewModel
 import com.example.myapplication.view.viewModel.ProductViewModel
+import com.example.myapplication.view.viewModel.ReservesViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 import com.google.firebase.auth.FirebaseAuth
@@ -51,6 +53,7 @@ class StoreActivity : ActivityMessage() {
     private lateinit var orderViewModel: OrderViewModel
     private lateinit var mainViewModel: MainViewModel
     private lateinit var productViewModel: ProductViewModel
+    private lateinit var reservesViewModel: ReservesViewModel
 
     @ExperimentalMaterialApi
     @ExperimentalComposeUiApi
@@ -61,6 +64,7 @@ class StoreActivity : ActivityMessage() {
         orderViewModel = OrderViewModel.getOrderViewModel(this)
         mainViewModel = MainViewModel.getMainViewModel(this)
         productViewModel = ProductViewModel.getMainViewModel(this)
+        reservesViewModel = ReservesViewModel.getMainViewModel(this)
 
         val date = DateUtils.currentDate
 
@@ -100,6 +104,10 @@ class StoreActivity : ActivityMessage() {
                                     MasterMenus.VARIANT -> {
                                         navController.navigate(StoreDestinations.MASTER_VARIANTS)
                                     }
+
+                                    MasterMenus.RESERVES -> {
+                                        navController.navigate(StoreDestinations.MASTER_RESERVES)
+                                    }
                                 }
                             },
                             onStoreMenuClicked = {
@@ -107,6 +115,7 @@ class StoreActivity : ActivityMessage() {
                                     com.example.myapplication.view.ui.StoreMenus.SALES_RECAP -> {
                                         navController.navigate(StoreDestinations.MASTER_RECAP)
                                     }
+
                                     com.example.myapplication.view.ui.StoreMenus.OUTCOMES -> {
                                         OutcomesActivity.createInstanceForRecap(this@StoreActivity)
                                     }
@@ -114,14 +123,22 @@ class StoreActivity : ActivityMessage() {
                                     com.example.myapplication.view.ui.StoreMenus.PAYMENT -> {
                                         navController.navigate(StoreDestinations.MASTER_PAYMENT)
                                     }
+                                    com.example.myapplication.view.ui.StoreMenus.RESERVES->{
+                                        navController.navigate(StoreDestinations.MASTER_RESERVES)
+                                    }
 
                                     com.example.myapplication.view.ui.StoreMenus.STORE -> {
                                         navController.navigate(StoreDestinations.MASTER_STORES)
                                     }
+
                                     com.example.myapplication.view.ui.StoreMenus.PROMO -> {
                                         navController.navigate(StoreDestinations.MASTER_PROMO)
                                     }
-                                    com.example.myapplication.view.ui.StoreMenus.LOGOUT -> { logout() }
+
+                                    com.example.myapplication.view.ui.StoreMenus.LOGOUT -> {
+                                        logout()
+                                    }
+
                                     else -> {
                                         // Do nothing
                                     }
@@ -156,6 +173,14 @@ class StoreActivity : ActivityMessage() {
                     composable(StoreDestinations.MASTER_STORES) {
                         StoresView(
                             mainViewModel = mainViewModel,
+                            onBackClicked = {
+                                navController.popBackStack()
+                            }
+                        )
+                    }
+                    composable(StoreDestinations.MASTER_RESERVES) {
+                        ReservesMaster(
+                            reserveViewModel = reservesViewModel,
                             onBackClicked = {
                                 navController.popBackStack()
                             }
@@ -201,6 +226,7 @@ class StoreActivity : ActivityMessage() {
                             }
                         )
                     }
+
 
                     val productIdArgument = navArgument(name = StoreDestinations.PRODUCT_ID) {
                         type = NavType.LongType
