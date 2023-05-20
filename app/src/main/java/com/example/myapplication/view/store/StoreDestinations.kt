@@ -13,6 +13,7 @@ object StoreDestinations {
     const val MASTER_PAYMENT = "master_payment"
     const val MASTER_PROMO = "master_promo"
     const val MASTER_RESERVES = "master_reserves"
+    const val MASTER_RESERVES_CATEGORY = "master_reserves_category"
 
     const val DETAIL_PRODUCT = "detail_product/{$PRODUCT_ID}"
     const val PRODUCT_VARIANTS = "product_variants/{$PRODUCT_ID}"

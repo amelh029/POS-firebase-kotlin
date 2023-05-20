@@ -40,7 +40,8 @@ enum class MasterMenus(@StringRes val title: Int) {
     PRODUCT(R.string.product),
     CATEGORY(R.string.category),
     VARIANT(R.string.variant),
-    RESERVES(R.string.reserves)
+    RESERVES(R.string.reserves),
+    RESERVES_CATEGORY(R.string.category_reserves)
 }
 
 enum class SettingMenus(@StringRes val title: Int) {

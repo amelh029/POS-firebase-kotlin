@@ -22,6 +22,7 @@ import com.example.myapplication.injection.RepositoryInjection.providePaymentsRe
 import com.example.myapplication.injection.RepositoryInjection.provideProductVariantsRepository
 import com.example.myapplication.injection.RepositoryInjection.provideProductsRepository
 import com.example.myapplication.injection.RepositoryInjection.providePromosRepository
+import com.example.myapplication.injection.RepositoryInjection.provideReserveCategoriesRepository
 import com.example.myapplication.injection.RepositoryInjection.provideReservesRepository
 import com.example.myapplication.injection.RepositoryInjection.provideSettingRepository
 import com.example.myapplication.injection.RepositoryInjection.provideStoreRepository
@@ -43,6 +44,7 @@ class ViewModelFactory private constructor(
     private val variantsRepository: VariantsRepository,
     private val variantOptionsRepository: VariantOptionsRepository,
     private val categoriesRepository: CategoriesRepository,
+    private val reservesCategoryRepository: ReservesCategoryRepository,
     private val outcomesRepository: OutcomesRepository,
     private val productsRepository: ProductsRepository,
     private val productVariantsRepository: ProductVariantsRepository,
@@ -77,6 +79,7 @@ class ViewModelFactory private constructor(
                             variantsRepository = provideVariantsRepository(context),
                             variantOptionsRepository = provideVariantOptionsRepository(context),
                             categoriesRepository = provideCategoriesRepository(context),
+                            reservesCategoryRepository = provideReserveCategoriesRepository(context),
                             outcomesRepository = provideOutcomesRepository(context),
                             productsRepository = provideProductsRepository(context),
                             productVariantsRepository = provideProductVariantsRepository(context),
@@ -149,7 +152,8 @@ class ViewModelFactory private constructor(
             }
             modelClass.isAssignableFrom(ReservesViewModel::class.java)->{
                 ReservesViewModel(
-                    reservesRepository = reservesRepository
+                    reservesRepository = reservesRepository,
+                    reservesCategoryRepository = reservesCategoryRepository
                 ) as T
             }
 

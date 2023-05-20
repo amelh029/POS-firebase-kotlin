@@ -35,6 +35,7 @@ import com.example.myapplication.view.store.product.ProductDetailMaster
 import com.example.myapplication.view.store.product.ProductsMaster
 import com.example.myapplication.view.store.promo.PromoMasterView
 import com.example.myapplication.view.store.recap.RecapMainView
+import com.example.myapplication.view.store.reservescategory.ReservesCategoryMasterView
 import com.example.myapplication.view.store.stores.StoresView
 import com.example.myapplication.view.ui.GeneralMenus
 import com.example.myapplication.view.ui.MasterMenus
@@ -108,6 +109,9 @@ class StoreActivity : ActivityMessage() {
                                     MasterMenus.RESERVES -> {
                                         navController.navigate(StoreDestinations.MASTER_RESERVES)
                                     }
+                                    MasterMenus.RESERVES_CATEGORY ->{
+                                        navController.navigate(StoreDestinations.MASTER_RESERVES_CATEGORY)
+                                    }
                                 }
                             },
                             onStoreMenuClicked = {
@@ -122,9 +126,6 @@ class StoreActivity : ActivityMessage() {
 
                                     com.example.myapplication.view.ui.StoreMenus.PAYMENT -> {
                                         navController.navigate(StoreDestinations.MASTER_PAYMENT)
-                                    }
-                                    com.example.myapplication.view.ui.StoreMenus.RESERVES->{
-                                        navController.navigate(StoreDestinations.MASTER_RESERVES)
                                     }
 
                                     com.example.myapplication.view.ui.StoreMenus.STORE -> {
@@ -165,6 +166,14 @@ class StoreActivity : ActivityMessage() {
                     composable(StoreDestinations.MASTER_CATEGORY) {
                         CategoryMasterView(
                             productViewModel = productViewModel,
+                            onBackClicked = {
+                                navController.popBackStack()
+                            }
+                        )
+                    }
+                    composable(StoreDestinations.MASTER_RESERVES_CATEGORY){
+                        ReservesCategoryMasterView(
+                            reservesViewModel = reservesViewModel,
                             onBackClicked = {
                                 navController.popBackStack()
                             }

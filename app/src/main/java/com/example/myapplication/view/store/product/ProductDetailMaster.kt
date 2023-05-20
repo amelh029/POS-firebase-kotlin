@@ -43,7 +43,6 @@ fun ProductDetailMaster(
 
     val product = productViewModel.getProductWithCategory(productId)
         .collectAsState(initial = null)
-
     var isEditMode by remember { mutableStateOf(isNewProduct) }
     LaunchedEffect(key1 = isNewProduct) {
         isEditMode = isNewProduct

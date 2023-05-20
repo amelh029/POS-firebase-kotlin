@@ -13,6 +13,7 @@ import com.example.myapplication.data.source.local.entity.room.master.*
 @Database(
     entities = [
         Category::class,
+        ReservesCategory::class,
         Customer::class,
         Order::class,
         Purchase::class,
@@ -39,7 +40,9 @@ import com.example.myapplication.data.source.local.entity.room.master.*
     version = 1,
     /*autoMigrations = [
         AutoMigration(from = 1, to = 2),
-    ]*/
+    ]
+
+     */
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun posDao(): POSDao
@@ -49,6 +52,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun variantsDao(): VariantsDao
     abstract fun variantOptionsDao(): VariantOptionsDao
     abstract fun categoriesDao(): CategoriesDao
+    abstract fun reservecategoriesDao(): ReservesCategoryDao
     abstract fun outcomesDao(): OutcomesDao
     abstract fun productsDao(): ProductsDao
     abstract fun productVariantsDao(): ProductVariantsDao
