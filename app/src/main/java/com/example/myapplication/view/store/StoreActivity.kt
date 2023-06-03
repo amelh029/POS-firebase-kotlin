@@ -28,6 +28,7 @@ import com.example.myapplication.view.order_customer.OrderCustomerActivity
 import com.example.myapplication.view.orders.OrdersActivity
 import com.example.myapplication.view.outcomes.OutcomesActivity
 import com.example.myapplication.view.settings.SettingsActivity
+import com.example.myapplication.view.store.Reserves.ReservesDetailMaster
 import com.example.myapplication.view.store.Reserves.ReservesMaster
 import com.example.myapplication.view.store.category.CategoryMasterView
 import com.example.myapplication.view.store.payments.PaymentMasterView
@@ -192,6 +193,12 @@ class StoreActivity : ActivityMessage() {
                             reserveViewModel = reservesViewModel,
                             onBackClicked = {
                                 navController.popBackStack()
+                            },
+                            onItemClicked = {
+                                navController.navigate(StoreDestinations.reservesDetail(it.id))
+                            },
+                            onAddReservesClicked = {
+                                navController.navigate(StoreDestinations.newReserves())
                             }
                         )
                     }
@@ -218,6 +225,7 @@ class StoreActivity : ActivityMessage() {
                             }
                         )
                     }
+
                     composable(StoreDestinations.MASTER_PRODUCT) {
                         ProductsMaster(
                             productViewModel = productViewModel,
@@ -247,7 +255,6 @@ class StoreActivity : ActivityMessage() {
                         var currentId by rememberSaveable {
                             mutableStateOf(it.arguments?.getLong(StoreDestinations.PRODUCT_ID))
                         }
-
                         currentId?.let { id ->
                             ProductDetailMaster(
                                 productViewModel = productViewModel,
@@ -267,6 +274,34 @@ class StoreActivity : ActivityMessage() {
                             )
                         }
                     }
+                    val reservesIdArgument = navArgument(name = StoreDestinations.RESERVES_ID){
+                        type = NavType.LongType
+                    }
+                    composable(
+                        route = StoreDestinations.DETAIL_RESERVES,
+                        arguments = listOf(reservesIdArgument)
+                    ){
+                        var currentresId by rememberSaveable{
+                            mutableStateOf(it.arguments?.getLong(StoreDestinations.RESERVES_ID))
+                        }
+                        currentresId?.let{ id ->
+                            ReservesDetailMaster(
+                                reservesViewModel = reservesViewModel,
+                                reservesId = id,
+                                onBackClicked = {
+                                                navController.popBackStack()
+                                                },
+                                onCreateNewReserves = {reserves ->
+                                    lifecycleScope.launch {
+                                        val newresId = reservesViewModel.insertReserves(reserves)
+                                        currentresId = newresId
+                                    }
+                                }
+                            )
+                        }
+
+                    }
+
                     composable(
                         route = StoreDestinations.PRODUCT_VARIANTS,
                         arguments = listOf(productIdArgument)

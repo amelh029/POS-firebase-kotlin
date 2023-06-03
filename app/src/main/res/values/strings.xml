@@ -131,6 +131,7 @@
     <string name="ResourceCategoryData">Данные категории ресурсов</string>
     <string name="Name_Reserves_Category">Название категории ресурсов</string>
     <string name="category_reserves">Категория ресурсов</string>
+    <string name="resource_data">Информация о ингридиенте</string>
 
 
 </resources>

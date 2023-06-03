@@ -1,5 +1,7 @@
 package com.example.myapplication.data.source.local.entity.room.master
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.*
 import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.sqlite.db.SimpleSQLiteQuery
@@ -16,13 +18,14 @@ import java.io.Serializable
 @Entity(
     tableName = Reserves.DB_NAME,
     foreignKeys = [ForeignKey(
-        entity = Reserves::class,
-        parentColumns = [Reserves.ID],
-        childColumns = [Reserves.ID],
+        entity = ReservesCategory::class,
+        parentColumns = [ReservesCategory.ID],
+        childColumns = [ReservesCategory.ID],
         onDelete = CASCADE
     )],
     indices = [
-        Index(value = [Reserves.ID])
+        Index(value = [Reserves.ID]),
+        Index(value = [ReservesCategory.ID])
     ]
 )
 data class Reserves(
@@ -31,7 +34,10 @@ data class Reserves(
     var id: Long,
 
     @ColumnInfo(name = NAME)
-    override var name: String,
+    var name: String,
+
+    @ColumnInfo(name = ReservesCategory.ID)
+    var reservesCategory: Long,
 
     @ColumnInfo(name = MEASURE)
     var meassure: String,
@@ -47,9 +53,8 @@ data class Reserves(
     var isUploaded: Boolean
 
 
-): Serializable, DropdownItem{
-
-    fun isNewReserves() = id == 0L
+): Serializable {
+    
 
     companion object: RemoteClassUtils<Reserves> {
         const val ID = "id_reserves"
@@ -57,7 +62,7 @@ data class Reserves(
         const val MEASURE = "measure"
         const val QUANTITY = "quantity"
         const val STATUS = "status"
-        //const val UPLOAD = "upload"
+        const val UPLOAD = "upload"
 
         const val DB_NAME = "reserves"
 
@@ -66,10 +71,12 @@ data class Reserves(
 
         fun createNewReserves(
             name: String,
+            reservesCategory: Long,
             measure: String,
             quantity: Long
         ) = Reserves(
             name = name,
+            reservesCategory = reservesCategory,
             meassure = measure,
             quantity = quantity,
             id = 0,
@@ -81,6 +88,7 @@ data class Reserves(
             return hashMapOf(
                 ID to data.id,
                 NAME to data.name,
+                ReservesCategory.ID to data.reservesCategory,
                 MEASURE to data.meassure,
                 QUANTITY to data.quantity,
                 STATUS to data.isActive,
@@ -94,6 +102,7 @@ data class Reserves(
                 val reserves = Reserves(
                     document.data[ID] as Long,
                     document.data[NAME] as String,
+                    document.data[ReservesCategory.ID] as Long,
                     document.data[MEASURE] as String,
                     document.data[QUANTITY] as Long,
                     document.data[STATUS] as Boolean,
@@ -129,4 +138,8 @@ data class Reserves(
             return SimpleSQLiteQuery(query.toString())
         }
     }
+
+    //@Ignore
+    //constructor(id: Long, name: String, reservesCategory: Long, meassure: String, quantity: Long, isActive: Boolean, isUploaded: Boolean): this( id, name, reservesCategory, meassure, quantity, isActive, isUploaded, false)
+
 }

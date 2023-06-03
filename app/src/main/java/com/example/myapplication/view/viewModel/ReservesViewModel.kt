@@ -4,20 +4,18 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.sqlite.db.SimpleSQLiteQuery
-import com.example.myapplication.data.source.local.entity.room.master.Category
 import com.example.myapplication.data.source.local.entity.room.master.Reserves
 import com.example.myapplication.data.source.local.entity.room.master.ReservesCategory
 import com.example.myapplication.data.source.repository.ReservesCategoryRepository
 import com.example.myapplication.data.source.repository.ReservesRepository
-import com.example.myapplication.data.source.repository.VariantOptionsRepository
-import com.example.myapplication.data.source.repository.VariantsRepository
 import kotlinx.coroutines.launch
-import java.security.PrivateKey
 
 class ReservesViewModel (
 
     private val reservesRepository: ReservesRepository,
-    private val reservesCategoryRepository: ReservesCategoryRepository
+    private val reservesCategoryRepository: ReservesCategoryRepository,
+
+
 ): ViewModel(){
 
     companion object: ViewModelFromFactory<ReservesViewModel>(){
@@ -28,7 +26,7 @@ class ReservesViewModel (
 
     fun getReserves(idReserves: Long) = reservesRepository.getReservesById(idReserves)
 
-    suspend fun insertReserves(data: Reserves)= reservesRepository.insertReserves(data)
+    suspend fun insertReserves(data: Reserves) = reservesRepository.insertReserves(data)
 
     suspend fun updateRepository(data: Reserves){
         viewModelScope.launch {
@@ -37,23 +35,29 @@ class ReservesViewModel (
     }
     fun getReserves(query: SimpleSQLiteQuery) = reservesRepository.getReserves(query)
 
-    fun updatetReserves(data: Reserves){
+    fun updateReservesCategory(data: ReservesCategory){
         viewModelScope.launch {
-            reservesRepository.updateReserves(data)
+            reservesCategoryRepository.updateReservesCategory(data)
         }
     }
-    fun getReservesCategories(query: SimpleSQLiteQuery) = reservesCategoryRepository.getReservesCategories(query)
+    fun getReservesCategories(query: SimpleSQLiteQuery) =
+        reservesCategoryRepository.getReservesCategories(query)
 
 
+    fun getReservesWithCategories(reservesCategory: Long) =
+        reservesRepository.getReservesWithCategories(reservesCategory)
+
+    fun getReservesWithCategory(idReserves: Long) =
+        reservesRepository.getReservesWithCategory(idReserves)
     fun insertReservesCategory(data: ReservesCategory) {
         viewModelScope.launch {
             reservesCategoryRepository.insertReservesCategory(data)
         }
     }
 
-    fun updateReserveCategory(data: ReservesCategory) {
+    fun updateReserves(data: Reserves){
         viewModelScope.launch {
-            reservesCategoryRepository.updateReservesCategory(data)
+            reservesRepository.updateReserves(data)
         }
     }
 }

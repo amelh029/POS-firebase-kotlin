@@ -125,4 +125,12 @@
     <string name="option_selected">%s выбранный вариант</string>
     <string name="option_name">Пожалуйста, выберите платеж</string>
     <string name="reserves">Склад</string>
+    <string name="resource_name">Название ингридиента</string>
+    <string name="meassure">Единица Измерения</string>
+    <string name="Quantity">Количество</string>
+    <string name="Resource_name">данные ингридиента</string>
+    <string name="ResourceCategoryData">Данные категории ресурсов</string>
+    <string name="Name_Reserves_Category">Название категории ресурсов</string>
+    <string name="category_reserves">Категория ресурсов</string>
+    <string name="resource_data">Информация о ингридиенте</string>
 </resources>

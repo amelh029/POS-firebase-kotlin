@@ -1,12 +1,11 @@
 package com.example.myapplication.data.source.repository.implimentation
 
-import androidx.lifecycle.viewModelScope
+
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.example.myapplication.data.source.local.entity.room.master.Reserves
 import com.example.myapplication.data.source.local.room.ReserveDao
 import com.example.myapplication.data.source.repository.ReservesRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
+
 
 class ReserveRepositoryImpl(
     private val dao: ReserveDao
@@ -29,9 +28,16 @@ class ReserveRepositoryImpl(
         }
     }
 
+    override fun getReservesWithCategories(reservesCategory: Long) = dao.getReservesWithCategories(reservesCategory)
+
+    override fun getReservesWithCategory(reservesId: Long) = dao.getReservesWithCategory(reservesId)
+
+    override fun getAllReservesWithReservesCategories() = dao.getAllReservesWithCategories()
+
     override fun getReserves(query: SimpleSQLiteQuery) = dao.getReserves(query)
     override fun getReservesById(reservesId: Long) = dao.getReservesAsFlow(reservesId)
-    override fun insertReserves(data: Reserves) = dao.insetReserves(data)
+
+    override suspend fun insertReserves(data: Reserves) = dao.insertReserves(data)
 
 
     override suspend fun updateReserves(data: Reserves){

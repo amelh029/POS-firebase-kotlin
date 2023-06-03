@@ -45,7 +45,9 @@ fun ProductsMaster(
 
     Box {
 
-        var shouldShowButton by remember { mutableStateOf(true) }
+        var shouldShowButton by remember {
+            mutableStateOf(true)
+        }
 
         Scaffold(
             modifier = Modifier

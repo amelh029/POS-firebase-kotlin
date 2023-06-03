@@ -84,7 +84,7 @@ fun ReservesCategoryMasterView(
                         if (it.isNewReservesCategory()) {
                             reservesViewModel.insertReservesCategory(it)
                         } else {
-                            reservesViewModel.updateReserveCategory(it)
+                            reservesViewModel.updateReservesCategory(it)
                         }
                         selectedReservesCategory = null
                         modalState.hide()
@@ -213,7 +213,7 @@ private fun ReservesCategoryContent(
                     reservesCategory = it,
                     onReservesCategoryClicked = onReservesCategoryClicked,
                     onReservesCategorySwitched = { isActive ->
-                        reservesViewModel.updateReserveCategory(
+                        reservesViewModel.updateReservesCategory(
                             it.copy(
                                 isActive = isActive
                             )
